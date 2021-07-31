@@ -45,7 +45,7 @@ class RoverTest {
         "BBRFF, 3:2:S:OK",
         "RRLL, 5:4:E:OK"
     )
-    fun `multiple commands moves the rover from initial position processing each command`(commands: String, expected: String) {
+    fun `multiple commands`(commands: String, expected: String) {
         val rover = rover(Position(5, 4), Directions.East)
 
         val result = rover.execute(commands)
@@ -91,8 +91,7 @@ class RoverTest {
         "South, 0:0, 0:9:S:OK"
     )
     fun `when rover moves at one edge of the plateau it appears at the other`(direction: String, position: String, expected: String) {
-        val plateau = Plateau(Size(10, 10))
-        val rover = rover(position, direction, plateau)
+        val rover = rover(position, direction, Plateau(Size(10, 10)))
 
         val result = rover.execute("F")
 
@@ -109,17 +108,17 @@ class RoverTest {
         assertThat(result).isEqualTo("2:0:E:ERROR")
     }
 
-    private fun positionFromString(position: String): Position {
-        val parts = position.split(":").map { it.toInt() }
-        return Position(parts[0], parts[1])
-    }
-
     private fun rover(position: Position, direction: String) = rover(position, Directions.valueOf(direction))
 
     private fun rover(position: Position, direction: Directions) = Rover(position, direction, plateau)
 
     private fun rover(position: String, direction: String, plateau: Plateau) =
         Rover(positionFromString(position), Directions.valueOf(direction), plateau)
+
+    private fun positionFromString(position: String): Position {
+        val parts = position.split(":").map { it.toInt() }
+        return Position(parts[0], parts[1])
+    }
 
     private val plateauSize = Size(10, 10)
     private val plateau = Plateau(plateauSize)
