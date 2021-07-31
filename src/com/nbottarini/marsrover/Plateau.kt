@@ -1,4 +1,4 @@
-package domain
+package com.nbottarini.marsrover
 
 class Plateau(val size: Size) {
     private val obstacles = mutableListOf<Position>()

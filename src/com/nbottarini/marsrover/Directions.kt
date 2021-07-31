@@ -1,6 +1,6 @@
-package domain
+package com.nbottarini.marsrover
 
-enum class Direction {
+enum class Directions {
     South {
         override fun turnedRight() = West
         override fun turnedLeft() = East
@@ -22,7 +22,7 @@ enum class Direction {
         override fun opposite() = East
     };
 
-    abstract fun turnedRight(): Direction
-    abstract fun turnedLeft(): Direction
-    abstract fun opposite(): Direction
+    abstract fun turnedRight(): Directions
+    abstract fun turnedLeft(): Directions
+    abstract fun opposite(): Directions
 }

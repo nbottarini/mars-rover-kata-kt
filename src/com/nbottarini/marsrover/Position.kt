@@ -1,14 +1,14 @@
-package domain
+package com.nbottarini.marsrover
 
 class Position(val x: Int, val y: Int) {
     private fun changedBy(deltaX: Int, deltaY: Int) = Position(x + deltaX, y + deltaY)
 
-    fun movedIn(direction: Direction): Position {
+    fun movedIn(direction: Directions): Position {
         return when(direction) {
-            Direction.East -> changedBy(1, 0)
-            Direction.West -> changedBy(-1, 0)
-            Direction.North -> changedBy(0, 1)
-            Direction.South -> changedBy(0, -1)
+            Directions.East -> changedBy(1, 0)
+            Directions.West -> changedBy(-1, 0)
+            Directions.North -> changedBy(0, 1)
+            Directions.South -> changedBy(0, -1)
         }
     }
 
@@ -31,4 +31,6 @@ class Position(val x: Int, val y: Int) {
         result = 31 * result + y
         return result
     }
+
+    override fun toString() = "Position($x, $y)"
 }
