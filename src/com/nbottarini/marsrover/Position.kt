@@ -14,23 +14,9 @@ class Position(val x: Int, val y: Int) {
 
     fun wrappedBy(size: Size) = Position((x + size.width) % size.width , (y + size.height) % size.height)
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
+    override fun equals(other: Any?) = other is Position && other.x == x && other.y == y
 
-        other as Position
-
-        if (x != other.x) return false
-        if (y != other.y) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = x
-        result = 31 * result + y
-        return result
-    }
+    override fun hashCode() = 31 * x + y
 
     override fun toString() = "Position($x, $y)"
 }
